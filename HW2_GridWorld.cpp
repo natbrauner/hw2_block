@@ -13,10 +13,14 @@ using namespace std;
 #define NRAND (double) (rand()/RAND_MAX)
 #define max 10
 
-int Ax;
-int Ay;
-int Gx;
-int Gy;
+int Ax = 2;
+int Ay = 2;
+int Gx = 8;
+int Gy = 8;
+int xmin = 1;
+int xmax = max;
+int ymin = 1;
+int ymax = max;
 
 class domain {
 	//define the dimensions of domain, make it easily changable
@@ -54,7 +58,7 @@ public:
 	}
 }*/
 
-void move(agent* pA, domain* pG) {
+/*void move(agent* pAx, agent* pAy, domain* pGx, domain* pGy) {
 	//write a program too move the agent within the domain
 	while (Ax != Gx && Ay != Gy) {
 		cout << "The coordinates of the agent (x,y)=(" << Ax << "," << Ay << ")" << endl;
@@ -63,41 +67,77 @@ void move(agent* pA, domain* pG) {
 		cin >> dir;
 			switch (dir) {
 			case 1:
-				if (pA->Ay < pG->ymax) {
+				if (pAy->Ay < pGy->ymax) {
 					Ay++;
 				}
 				break;
 			case 2:
-				if (pA->Ay > pG->ymin) {
+				if (pAy->Ay > pGy->ymin) {
 					Ay--;
 				}
 				break;
 			case 3:
-				if (pA->Ax > pG->xmin) {
+				if (pAx->Ax > pGx->xmin) {
 					Ax--;
 				}
 				break;
 			case 4:
-				if (pA->Ax < pG->xmax) {
+				if (pAx->Ax < pGx->xmax) {
 					Ax++;
 				}
 				break;
 			default:
 				cout << "Sorry, that is not a direction." << endl;
 			}
-			cout << "Congratulations, you have reached the goal!" << endl;
+			//cout << "Congratulations, you have reached the goal!" << endl;
 	}
 	
-}
+}*/
 
 int main()
 {
-	agent L;
-	agent* pA = &L;
+	/*agent L;
+	agent* pAx = &L;
+	agent* pAy = &L;
 	domain Grid;
-	domain* pG = &Grid;
+	domain* pGx = &Grid;
+	domain* pGy = &Grid;
 
-	move(pA, pG);
+	move(pAx, pAy, pGx, pGy);*/
+
+	//write a program too move the agent within the domain
+	while (Ax != Gx || Ay != Gy) {
+		cout << "The coordinates of the agent (x,y)=(" << Ax << "," << Ay << ")" << endl;
+		int dir;
+		cout << "Press 1 (up), 2 (down), 3 (left), 4 (right) to choose a direction..." << endl;
+		cin >> dir;
+		switch (dir) {
+		case 1:
+			if (Ay < ymax) {
+				Ay++;
+			}
+			break;
+		case 2:
+			if (Ay > ymin) {
+				Ay--;
+			}
+			break;
+		case 3:
+			if (Ax > xmin) {
+				Ax--;
+			}
+			break;
+		case 4:
+			if (Ax < xmax) {
+				Ax++;
+			}
+			break;
+		default:
+			cout << "Sorry, that is not a direction." << endl;
+		}
+		//cout << "Congratulations, you have reached the goal!" << endl;
+	}
+	cout << "Congratulations, you have reached the goal!" << endl;
 	//I am tring to run my move() and bump() functions in the main how do you do that?
 	return 0;
 }
