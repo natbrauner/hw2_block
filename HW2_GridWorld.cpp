@@ -21,9 +21,9 @@ int Gy;
 class domain {
 	//define the dimensions of domain, make it easily changable
 public:
-	int xmin = 0;
+	int xmin = 1;
 	int xmax = max;
-	int ymin = 0;
+	int ymin = 1;
 	int ymax = max;
 	//int **gridword;
 	
@@ -38,23 +38,23 @@ class agent {
 public:
 	int Ax = 2;
 	int Ay = 2;
-	void bump();
+	//void bump();
 	void move();
 
 
 	//state, not nessasary but could be useful for project Beta
 };
 
-void bump(agent* pA,domain* pG) { //
+/*void bump(agent* pA,domain* pG) { //
 	//use if statement to deal with when the agent leaves the domain
-	int i;
+	int i=1;
 	while (pG->xmax<pA->Ax||pG->xmin>pA->Ax||pG->ymax<pA->Ay||pG->ymin>pA->Ay){
-			int Ax(i) = Ax(i - 1);
-			int Ay(i) = Ay(i - 1);
+			Ax(i) = Ax(i - 1);
+			Ay(i) = Ay(i - 1);
 	}
-}
+}*/
 
-void move(agent* pL, domain* pG) {
+void move(agent* pA, domain* pG) {
 	//write a program too move the agent within the domain
 	while (Ax != Gx && Ay != Gy) {
 		cout << "The coordinates of the agent (x,y)=(" << Ax << "," << Ay << ")" << endl;
@@ -63,13 +63,24 @@ void move(agent* pL, domain* pG) {
 		cin >> dir;
 			switch (dir) {
 			case 1:
-				Ay++;
+				if (pA->Ay < pG->ymax) {
+					Ay++;
+				}
+				break;
 			case 2:
-				Ay--;
+				if (pA->Ay > pG->ymin) {
+					Ay--;
+				}
+				break;
 			case 3:
-				Ax--;
+				if (pA->Ax > pG->xmin) {
+					Ax--;
+				}
+				break;
 			case 4:
-				Ax++;
+				if (pA->Ax < pG->xmax) {
+					Ax++;
+				}
 				break;
 			default:
 				cout << "Sorry, that is not a direction." << endl;
@@ -81,7 +92,12 @@ void move(agent* pL, domain* pG) {
 
 int main()
 {
+	agent L;
+	agent* pA = &L;
+	domain Grid;
+	domain* pG = &Grid;
 
+	move(pA, pG);
 	//I am tring to run my move() and bump() functions in the main how do you do that?
 	return 0;
 }
