@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string>
 using namespace std;
 
 #define NRAND (double) (rand()/RAND_MAX)
@@ -16,31 +17,33 @@ using namespace std;
 //Britny taught me about passing by reference and passing by pointer
 //Bryant taught me a lot about coding in general for HW 2 but I forgot to mention him...
 
+struct values {
+	int state = 0;					//state coordinate
+	int x=1;
+	int y=2;				//y coordinate
+	double Qval = 3;	//value from q table
+};
+
 class domain {
 	//define the dimensions of domain, make it easily changable
 public:
 	//define size
-	int rowsize = 10;
-	int columnsize = 10;
-	double Grid[]; //[];
+
+	//double Grid[]; //[];
 	//define goal location
 	//store values for the state
 	//store values for the Q-table
-	struct values;
 	void buildtable();
+	values VAL[4];
+
 		//How do I store these values in the Qtable?
 		//Do I need separate tables to store state and Qtable values?
 	//store reward values for every state based on whether it is the goal or not
 
 };
 
-struct domain::values {
-	int state=0;					//state coordinate
-	int xy[1][2] = { 0,0 };					//y coordinate
-	double Qval=0;	//value from q table
-	int agentpresent;
-};
 
+//probably dont need this if 
 /*void domain::buildtable() {
 	int rowsize = 10;
 	int columnsize = 10;
@@ -90,29 +93,22 @@ void agent::react() {
 		//input reward value for this state
 		
 }
+
 int main()
 {
-	/*int rowsize = 10;
+	domain GridWorld[10][10];
+	int rowsize = 10;
 	int columnsize = 10;
 	for (int row = 0; row < rowsize; row++) {
 		for (int column = 0; column < columnsize; column++) {
-			domain values[row][column];
+			cout << "State=" << GridWorld[row][column].VAL[3].state << ", ";// << endl;
+			cout << "x=" << GridWorld[row][column].VAL[3].x<<", ";// << endl;
+			cout << "y=" << GridWorld[row][column].VAL[3].y << ", ";// << endl;
+			cout << "Qval=" << GridWorld[row][column].VAL[3].Qval << "	";;;
+			cout << "	" << endl;
+			}
+		cout << endl;
 		}
-	}
-	
-
-
-	/*Qlearner state1=
-	{
-
-	}*/
-domain values=
-{
-	int state;
-	
-
-
-};
 	return 0;
-}
+	}
 
